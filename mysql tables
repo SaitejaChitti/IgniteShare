@@ -1,0 +1,19 @@
+create database misc;
+use misc;
+GRANT ALL ON misc.* TO 'root'@'localhost' IDENTIFIED BY '';
+//Make sure you are connected to my sql through port 3308; or else chang port no in pdo.php to your my sql port no;
+CREATE TABLE users (
+   user_id INTEGER 
+     AUTO_INCREMENT ,
+   name VARCHAR(128),
+   email VARCHAR(128),
+   password VARCHAR(128),
+   primary_key(user_id));
+)
+create table images(
+	post_id INTEGER AUTO_INCREMENT,
+	file_name varachar(30),
+	uploaded_on datetime,
+	message varchar(50),
+	likes int(11) default '0',
+	primary key(post_id));
