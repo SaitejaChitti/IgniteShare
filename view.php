@@ -44,7 +44,7 @@ if ( $rows = $stmt->fetchAll(PDO::FETCH_ASSOC) )
 	{
 	$z=$z+1;
 	$imageURL = 'uploads/'.$row["file_name"];
-	if(substr($imageURL,-3)=="JPG"||substr($imageURL,-3)=="PNG"||substr($imageURL,-3)=="png"||substr($imageURL,-3)=="jpg")
+	if(substr($imageURL,-3)=="JPG"||substr($imageURL,-3)=="PNG"||substr($imageURL,-3)=="png"||substr($imageURL,-3)=="jpg"||substr($imageURL,-4)=="jpeg"||substr($imageURL,-4)=="JPEG")
 		{
 ?>
 <figure>
