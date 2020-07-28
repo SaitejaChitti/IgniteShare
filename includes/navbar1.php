@@ -4,10 +4,9 @@
 	</div>
 	<ul>
 	  <li><a class="active" href="login.php">Home</a></li>
-	  <li><a href="view.php">Posts</a></li>
+	  <li><a href="posts.php">Posts</a></li>
 	  <li><a href="post.php">Upload a Post</a></li>
 	  <li><a href="#about">About</a></li>
 	<li><a href="logout.php">Logout</a></li>
 	</ul>
 </div>
-  

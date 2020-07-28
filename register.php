@@ -14,7 +14,12 @@
 	<div style="width: 40%; margin: 20px auto;">
 		<form method="post" action="includes/regvalidate.php" >
 			<h2>Register on MyBlog<hr></h2>
-			<?php include(ROOT_PATH . '/includes/errors.php') ?>
+			<?php
+			if(isset($_SESSION['errors'])){
+				include 'includes/errors.php';
+				unset($_SESSION['errors']);
+			}
+			?>
 			<input  type="text" name="username" value="<?php $username; ?>"  placeholder="Username">
 			<input type="email" name="email" value="<?php $email ?>" placeholder="Email">
 			<input type="password" name="password_1" placeholder="Password">
@@ -24,8 +29,9 @@
 				Already a member? <a href="login.php">Sign in</a>
 			</p>
 		</form>
-	</div>
+			</div>
 </div>
+
 <!-- // container -->
 <!-- Footer -->
 	<?php include( ROOT_PATH . '/includes/footer.php'); ?>

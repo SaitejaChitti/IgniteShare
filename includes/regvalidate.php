@@ -11,17 +11,17 @@
 <body>
 <div class="container">
 	<!-- Navbar -->
-		<?php include( ROOT_PATH . '/includes/navbar.php');?> 
+		<?php include( ROOT_PATH . '/includes/navbar.php');?>
 		<!-- // Navbar -->
 
 	<div style="width: 40%; margin: 20px auto;">
-	
+
 	<h1>Validating Credentials...</h1>
 	<?php
 	// variable declaration
-	
+
 	$username = "";
-	$email    = ""; 
+	$email    = "";
 	$errors = $_SESSION['errors'];
 	if (isset($_POST['reg_user'])) {
 		// receive all input values from the form
@@ -36,14 +36,14 @@
 		if (empty($password_1)) { array_push($errors, "uh-oh you forgot the password"); }
 		if ($password_1 != $password_2) { array_push($errors, "The  password and confirm password did not match");}
 
-		// Ensure that no user is registered twice. 
+		// Ensure that no user is registered twice.
 		// the email and usernames should be unique
 
-		$sql = "SELECT * FROM users 
+		$sql = "SELECT * FROM users
         WHERE email = :em OR name = :un LIMIT 1";
 		$stmt = $pdo->prepare($sql);
 		$stmt->execute(array(
-        ':em' => $email, 
+        ':em' => $email,
 		':un' => $username));
 		$user= $stmt->fetch(PDO::FETCH_ASSOC);
 		if ($user) { // if user exists
@@ -54,11 +54,11 @@
 			  array_push($errors, "Email already exists");
 			}
 		}
-		
+
 		$_SESSION['errors'] = $errors;
 		if (count($errors) == 0) {
 			$password = md5($password_1);//encrypting the password before saving in to database
-			$query = "INSERT INTO users (name, email, password) 
+			$query = "INSERT INTO users (name, email, password)
 					  VALUES(:name, :email, :password)";
 			$stmt = $pdo->prepare($query);
 			$stmt->execute(array(
@@ -69,8 +69,6 @@
 		}
 		else
 		{
-		include 'errors.php';
-		unset($_SESSION['errors']);
 		header("Refresh: 3; URL='../register.php'");
 		}
 	}

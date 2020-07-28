@@ -4,7 +4,7 @@ include 'pdo.php';
 ?>
 <?php include('includes/head_section.php'); ?>
 
-<title>MyBlog | Posts </title>
+<title>MyBlog | Profile Pic </title>
 </head>
 <body>
 <div class="container">
@@ -16,22 +16,22 @@ include 'pdo.php';
 <?php
 $errors=$_SESSION['errors'];
 // File upload path
-$targetDir = "uploads/";
+$targetDir = "profile_pics/";
 $fileName = basename($_FILES["file"]["name"]);
 $targetFilePath = $targetDir . $fileName;
 $fileType = pathinfo($targetFilePath,PATHINFO_EXTENSION);
 
-if(isset($_POST["submit"]) && !empty($_FILES["file"]["name"] )){
+if(isset($_POST["submit"]) && !empty($_FILES["file"]["name"] && isset($_SESSION['name']))){
     // Allow certain file formats
-    $allowTypes = array('jpg','png','jpeg','gif','pdf','JPG','PNG','GIF','JPEG','PDF','mp4');
+    $allowTypes = array('jpg','png','jpeg','JPG','PNG','JPEG');
     if(in_array($fileType, $allowTypes)){
         // Upload file to server
         if(move_uploaded_file($_FILES["file"]["tmp_name"], $targetFilePath)){
             // Insert image file name into database
-			$message=htmlentities($_POST['message']);
-            $insert = $pdo->query("INSERT into images (file_name,uploaded_on,message) VALUES ('".$fileName."', NOW(),'".$message."')");
+            $name=$_SESSION['name'];
+            $insert = $pdo->query("update users set profile_pic ='".$fileName."' where name='".$name."'");
             if($insert){
-                $_SESSION['message'] = "The file ".$fileName. " has been uploaded successfully.";
+                $_SESSION['message'] = "Your profile pic has been updated successfully.";
 				include "includes/messages.php";
             }else{
                 array_push($errors,"File upload failed, please try again.");
@@ -41,7 +41,7 @@ if(isset($_POST["submit"]) && !empty($_FILES["file"]["name"] )){
             array_push($errors,"Sorry, there was an error uploading your file.");
         }
     }else{
-        array_push($errors,"Sorry, only JPG, JPEG, PNG, GIF,PDF files are allowed to upload.");
+        array_push($errors,"Sorry, only JPG, JPEG, PNG files are allowed to upload.");
     }
 }else{
     array_push($errors,"Please select a file to upload.");
