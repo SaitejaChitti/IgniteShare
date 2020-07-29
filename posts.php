@@ -4,6 +4,7 @@ if(isset($_POST['like']))
 {
 	include "like.php";
 }
+
 ?>
 <?php include('includes/head_section.php');
 ?>
@@ -24,8 +25,28 @@ if(isset($_POST['like']))
 .card-header{
        padding: 5px 5px;
    }
+.hide{
+  display:none;
+}
+.show{
+  display:block;
+}
+.jumbotron{
+    border:2px solid grey;
+    }
+.card{
+      overflow:auto;
+    }
 
 </style>
+
+<script>
+function display(x)
+    {
+      document.getElementById(x).style.display = "block";
+      }
+</script>
+
   <?php
   // Get images from the database
   $z=0;
@@ -70,26 +91,55 @@ if(isset($_POST['like']))
                         echo('<form action="' . htmlentities($_SERVER["PHP_SELF"]) . '"'. 'method="POST"><input type="hidden" ');
                         echo('name="post_id" value="'.$row['post_id'].'">'."\n");
                         echo('&emsp;<button type="submit" class="btn btn-primary" name="like" value="like" style="font-color:blue;"><i class="fa fa-thumbs-o-up fa-lg">Like</i>&nbsp;'.$l["likes"].'</button>');
-                        echo $row['post_id'];
                         $_SESSION['post_id']=$row['post_id'];
                         echo('</form>');
                         }
                         else {
-                        echo('&emsp;<button type="submit" class="btn btn-primary" name="like" value="like" style="font-color:blue;"><i class="fa fa-thumbs-o-up fa-lg">Liked</i>&nbsp;'.$l["likes"].'</button>');
+                        echo('&emsp;<button type="submit" class="btn btn-primary" name="liked" value="liked" style="font-color:blue;"><i class="fa fa-check ">Liked</i>&nbsp;'.$l["likes"].'</button>');
                         }
 
                         ?>
-                        &emsp;<button type="submit" class="btn btn-primary" name="comment" value="comment" style="font-color:blue;"><i class="fa fa-comment-o fa-lg">Comment</i></button>'
-                        <form action="/html/tags/html_form_tag_action.cfm" method="post">
-<div>
-<textarea name="comments" id="comments" style="font-family:sans-serif;font-size:1.2em;">
-Hey... say something!
-</textarea>
-</div>
-<input type="submit" value="Submit">
-</form>
+                        &emsp;
 
+                        <button type="submit" class="btn btn-primary "  id="comment<?php echo $row['post_id']?>"style="font-color:blue;" onclick="return display(<?php echo $row['post_id']?>);" ><i class="fa fa-comment-o fa-lg">Comments</i></button>
 
+                        <div class="card-body" id="<?php echo $row['post_id']?>" style="display: none;">
+                          <?php
+
+                          $sq="select * from comments  where post_id='".$row["post_id"]."'";
+                          $stmt2=$pdo->query($sq);
+                          if ( $comments = $stmt2->fetchAll(PDO::FETCH_ASSOC) )
+                          {
+                             foreach($comments as $c){
+                               $sql1="select * from users  where name='".$c["commented_by"]."'";
+                               $stmt3=$pdo->query($sql1);
+                               if($u = $stmt3->fetch(PDO::FETCH_ASSOC)){
+                               $pic='profile_pics/'.$u['profile_pic'];
+                             }
+                          ?>
+                          <div class="jumbotron" style=" margin-right: 30px; margin-left: 30px; margin-top: 0px; height:10px;">
+                            <div class="container1">
+                                <div class="container">  <img src="<?php echo $pic;?>" alt="Profile Pic"/>
+                          <?php
+                          echo('<b>'.ucfirst($c['commented_by']).'</b><br>&emsp;');
+                          echo('<b>'.$c['comment'].'</b>');
+                          echo('<span style="float:right">'.$c['commented_on'].'</span>');
+                          ?>
+                        </div>
+                        </div>
+                      </div>
+                      <?php
+                        }
+                      }?>
+                      <?php
+                      echo('<form action="comment.php"method="POST"><input type="hidden" ');
+                      echo('name="post_id" value="'.$row['post_id'].'">'."\n");
+                        ?>
+                          <input type="text-area" name="text" placeholder="Type your comment here...."/>
+                           <input type="submit" name="comment"  class="btn btn-primary btn-lg" style="border: 3px solid white;"/>
+                           <input type="hidden" name="comment_id" value="<?php echo $row['post_id'];?>"/>
+                        </div>
+                        <?php echo('</form');?>
                   <center>
                     <?php if(!empty($row['message'])) {echo ($row['message']);}?>
                   </center>
