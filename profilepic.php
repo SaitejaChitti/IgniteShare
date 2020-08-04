@@ -23,13 +23,13 @@ $statusMsg = '';
 ?>
 
 <form action="uploadimg.php" method="post" enctype="multipart/form-data"><br/>
-    <h2>Select Image File to Post:</h2>
+    <h2>Select an Image to Change your Profile Pic:</h2>
     <input type="file" name="file">
-	<input type="submit" class="btn" name="submit" value="Post"></input>
+	<input type="submit" class="btn" name="submit" value="Upload"></input>
 </form>
 <?php }
 else{
-echo "<h2>Please Login Before Posting a Post ...<h2>";
+echo "<h2>Please Login ...<h2>";
 }
 ?>
 

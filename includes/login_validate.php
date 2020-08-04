@@ -52,20 +52,6 @@ if ( isset($_POST['email']) && isset($_POST['password'])  ) {
 	header("Refresh: 3, URL= '../post.php'");
    }
 }?>
-<?php
-function getUserByname($name)
-	{
-		$pdo = new PDO('mysql:host=localhost;port=3308;dbname=misc','sai', 'OK');
-		// See the "errors" folder for details...
-		$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$sql = "SELECT * FROM users WHERE name=$name LIMIT 1";
-		$stmt = $pdo->prepare($sql);
-		$row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-		// returns user in an array format:
-		// ['id'=>1 'username' => 'Awa', 'email'=>'a@a.com', 'password'=> 'mypass']
-		return $row;
-	}
 
 ?>
 

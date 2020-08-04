@@ -12,7 +12,7 @@ if(isset($_POST['like']))
 </head>
 <body>
 <style>
-.container img {
+.container2 img {
   float:left;
   max-width: 50px;
   width: 100%;
@@ -46,8 +46,13 @@ function display(x)
       document.getElementById(x).style.display = "block";
       }
 </script>
+<div class="container">
+	<!-- Navbar -->
+		<?php if(isset($_SESSION['name'])){include( ROOT_PATH . '/includes/navbar1.php');} ?>
+		<?php if(!isset($_SESSION['name'])){include( ROOT_PATH . '/includes/navbar.php');} ?>
 
   <?php
+  if(isset($_SESSION['name'])){
   // Get images from the database
   $z=0;
   $stmt = $pdo->query("SELECT * FROM images natural join users ORDER BY uploaded_on DESC");
@@ -68,8 +73,9 @@ function display(x)
             <div class="card-header" id="headingOne">
                 <h2 class="mb-0">
                     <button type="button" class="btn btn-link w-100" data-toggle="collapse" data-target="#collapse<?php echo ($z) ?>" style="text-align:left;">
-                    <div class="container">  <img src="<?php echo $profile_picURL;?>" alt="Profile Pic"/>
-              <span style="font-size:20pt;"><?php echo(ucfirst($row['name']))?></span></div><span style="font-size:10pt;color:#808080;"><?php echo($row['uploaded_on'])?></span><center><span style="font-size:16pt;color:danger;"><?php echo($row['message'])?></span></center></button>
+                    <div class="container2">  <img src="<?php echo $profile_picURL;?>" alt="Profile Pic"/>
+              <span style="font-size:20pt;"><?php echo(ucfirst($row['name']))?></span></div><span style="font-size:10pt;color:#808080;"><?php echo($row['uploaded_on'])?></span>
+              <center><span style="font-size:16pt;"><?php echo($row['message'])?></span></center><span style="font-size:10pt;color:#808080;float:right;">#<?php echo($row['theme'])?></span></button>
 
                 </h2>
             </div>
@@ -77,7 +83,7 @@ function display(x)
                 <div class="card-body h-100">
                   <figure>
                     <center>
-                      <img src="<?php echo $imageURL;?>" alt="<?php echo $row["file_name"];?>" style="width:1100px;height:700px"/>
+                      <img src="<?php echo $imageURL;?>" alt="<?php echo $row["file_name"];?>" style="width:750px;height:400px"/>
                     </center>
                   <figcaption>
                   <?php
@@ -88,14 +94,13 @@ function display(x)
                         $stmt1=$pdo->query($s);
                         $p = $stmt1->fetch(PDO::FETCH_ASSOC);
                         if($p===FALSE){
-                        echo('<form action="' . htmlentities($_SERVER["PHP_SELF"]) . '"'. 'method="POST"><input type="hidden" ');
-                        echo('name="post_id" value="'.$row['post_id'].'">'."\n");
+                        echo('<form action="like.php" method="post">');
+                        echo('<input type="hidden" name="post_id" value="'.$row['post_id'].'"/>');
                         echo('&emsp;<button type="submit" class="btn btn-primary" name="like" value="like" style="font-color:blue;"><i class="fa fa-thumbs-o-up fa-lg">Like</i>&nbsp;'.$l["likes"].'</button>');
-                        $_SESSION['post_id']=$row['post_id'];
                         echo('</form>');
                         }
                         else {
-                        echo('&emsp;<button type="submit" class="btn btn-primary" name="liked" value="liked" style="font-color:blue;"><i class="fa fa-check ">Liked</i>&nbsp;'.$l["likes"].'</button>');
+                        echo('&emsp;<button type="submit" class="btn btn-primary" name="liked" value="liked" style="font-color:blue;"><i class="fa fa-check " style="font-size:18px">Liked</i>&nbsp;'.$l["likes"].'</button>');
                         }
 
                         ?>
@@ -119,7 +124,7 @@ function display(x)
                           ?>
                           <div class="jumbotron" style=" margin-right: 30px; margin-left: 30px; margin-top: 0px; height:10px;">
                             <div class="container1">
-                                <div class="container">  <img src="<?php echo $pic;?>" alt="Profile Pic"/>
+                                <div class="container2">  <img src="<?php echo $pic;?>" alt="Profile Pic"/>
                           <?php
                           echo('<b>'.ucfirst($c['commented_by']).'</b><br>&emsp;');
                           echo('<b>'.$c['comment'].'</b>');
@@ -140,9 +145,6 @@ function display(x)
                            <input type="hidden" name="comment_id" value="<?php echo $row['post_id'];?>"/>
                         </div>
                         <?php echo('</form');?>
-                  <center>
-                    <?php if(!empty($row['message'])) {echo ($row['message']);}?>
-                  </center>
                   </figcaption>
                   </figure>
                   </div>
@@ -151,5 +153,9 @@ function display(x)
       <?php }}} ?>
 </div>
 </div>
-
+</div>
+<?php }
+else{
+echo ('<br><center><h2>Please Login Before Viewing  Posts ...</h2></center>');
+} ?>
 <?php include( ROOT_PATH . '/includes/footer.php'); ?>

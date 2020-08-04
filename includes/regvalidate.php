@@ -65,6 +65,12 @@
         ':name' => $username,
         ':email' => $email,
         ':password' => $password));
+				$query1 = "INSERT INTO profile (name,)
+						  VALUES(:name)";
+				$stmt1 = $pdo->prepare($query);
+				$stmt1->execute(array(
+	        ':name' => $username,
+	      ));
 		header("Refresh: 3; URL='../logout.php'");
 		}
 		else

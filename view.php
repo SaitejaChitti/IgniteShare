@@ -33,42 +33,7 @@ figure {
 	<!-- // Navbar -->
 
 	<div style="width: 40%; margin: 20px auto;">
-
 <?php
-// Get images from the database
-$z=0;
-$stmt = $pdo->query("SELECT * FROM images ORDER BY uploaded_on DESC");
-if ( $rows = $stmt->fetchAll(PDO::FETCH_ASSOC) )
-{
-	foreach($rows as $row)
-	{
-	$z=$z+1;
-	$imageURL = 'uploads/'.$row["file_name"];
-	if(substr($imageURL,-3)=="JPG"||substr($imageURL,-3)=="PNG"||substr($imageURL,-3)=="png"||substr($imageURL,-3)=="jpg"||substr($imageURL,-4)=="jpeg"||substr($imageURL,-4)=="JPEG")
-		{
-?>
-<figure>
-    <img src="<?php echo $imageURL;?>" alt="<?php echo $row["file_name"];?>" style="width:320px;height:240px"/>
-<figcaption>
-<?php
-			echo('<form action="' . htmlentities($_SERVER["PHP_SELF"]) . '"'. 'method="POST"><input type="hidden" ');
-			echo('name="post_id" value="'.$row['post_id'].'">'."\n");
-			echo('<button class="fa fa-thumbs-up" name="like" value="like" ></button>');
-			echo('</form>');
-			echo('<form action="' . htmlentities($_SERVER["PHP_SELF"]) . '"'. 'method="POST"><input type="hidden" ');
-			echo('name="post_id" value="'.$row['post_id'].'">'."");
-			echo('<button class="fa fa-thumbs-down" name="unlike" value="unlike" ></button>');
-			$sql="select likes from images where post_id='".$row["post_id"]."'";
-			$stmt=$pdo->query($sql);
-			$l = $stmt->fetch(PDO::FETCH_ASSOC);
-			echo("  " .$l["likes"]);
-?>
-<center>
-	<?php if(!empty($row['message'])) {echo ($row['message']);}?>
-</center>
-</figcaption>
-</figure>
-<?php 
 	}
 	if(substr($imageURL,-3)=="mp4")
 		{
@@ -91,13 +56,13 @@ if ( $rows = $stmt->fetchAll(PDO::FETCH_ASSOC) )
 			$l = $stmt->fetch(PDO::FETCH_ASSOC);
 			echo("  " .$l["likes"]);
 ?>
-<center>	
+<center>
 	<?php if(!empty($row['message'])) echo ($row['message']);?>
 </center>
 </figcaption>
 </figure>
 
-<?php 
+<?php
 	}
 	if(substr($imageURL,-3)=="pdf")
 		{
@@ -125,7 +90,7 @@ if ( $rows = $stmt->fetchAll(PDO::FETCH_ASSOC) )
 </figcaption>
 </figure>
 
-<?php 
+<?php
 		}
 	}
 }
