@@ -35,25 +35,25 @@ if ( isset($_POST['email']) && isset($_POST['password'])  ) {
 	echo("<h1>Validating Credentials...</h1>");
 	array_push($errors,"Username or Password is incorrect.\n");
 	$_SESSION['errors'] = $errors;
-	header("Refresh: 5; URL='../login.php'");
+	header("Refresh: 0; URL='../login.php'");
    }
    else {
     foreach ( $row as $r ) {
 	echo("<h1>");
     echo("WELCOME BACK $r<hr>");
     echo("</h1>");
-    }
+
 
         echo "<h2>Login success.</h2>\n";
-	    $_SESSION['message'] = "You are now logged in";
+				$n=ucfirst($r);
+	    $_SESSION['message'] = "Welcome Back $n";
 
 			// put logged in user into session array
 		$_SESSION['name'] = $r;
-	header("Refresh: 3, URL= '../post.php'");
+	header("Refresh: 0, URL= '../profile.php'");
    }
-}?>
+}}?>
 
-?>
 
 </div>
 </div>

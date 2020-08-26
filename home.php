@@ -23,7 +23,7 @@
   </style>
 <div class="container">
 	<!-- Navbar -->
-		<?php if(isset($_SESSION['name'])){ include( ROOT_PATH . '/includes/navbar1.php');} else {include( ROOT_PATH . '/includes/navbar1.php');}?>
+		<?php if(isset($_SESSION['name'])){ include( ROOT_PATH . '/includes/navbar1.php');} else {include( ROOT_PATH . '/includes/navbar.php');}?>
 <br>
     <img src="static/images/bg.jpg" style="height:500px;width:1105px;"/>
 

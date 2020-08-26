@@ -57,6 +57,7 @@
   </style>
 <div class="container">
   <?php if(isset($_SESSION['name'])) {include 'includes/navbar1.php';
+    if(isset($_SESSION['message'])){echo"<br>";include 'includes/messages.php';echo"<br>"; unset($_SESSION['message']);}
   $sql1="select * from users natural join profile  where name='".$_SESSION["name"]."'";
   $stmt3=$pdo->query($sql1);
   if($t = $stmt3->fetch(PDO::FETCH_ASSOC)){
@@ -111,14 +112,14 @@
           <br><br>
           <h2 class="mb-4">View your Posts</h2>
           <p>You can View all your Posts.</p>
-          <form action="#" method="post">
+          <form action="posts.php?Filter=YP" method="post">
           <input type="submit" class="btn btn-primary w-50" value="View My Posts"></input>
         </form>
 
           <br><br>
           <h2 class="mb-4">Trending Posts</h2>
           <p>You can View all your Trending Posts.</p>
-          <form action="#" method="post">
+          <form action="posts.php?Filter=YTP" method="post">
           <input type="submit" class="btn btn-primary w-50" value="View my Trending Posts"></input>
         </form>
 

@@ -1,7 +1,7 @@
 <?php
 require_once "pdo.php";
 if(isset($_SESSION['name'])){
-$sqlEvents=$pdo->query("SELECT * FROM images WHERE name ='saitejach096'");
+$sqlEvents=$pdo->query("SELECT * FROM images WHERE name ='{$_SESSION['name']}'");
 $calendar = array();
 if( $rows = $sqlEvents->fetchAll(PDO::FETCH_ASSOC) ) {
 	// convert  date to milliseconds
@@ -12,7 +12,7 @@ if( $rows = $sqlEvents->fetchAll(PDO::FETCH_ASSOC) ) {
 	$calendar[] = array(
         'id' =>$row['post_id'],
         'title' => $row['message'],
-        'url' => "#",
+        'url' => "../posts.php",
 		"class" => 'event-important',
         'start' => "$start",
         'end' => "$end"

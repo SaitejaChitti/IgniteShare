@@ -65,9 +65,9 @@
         ':name' => $username,
         ':email' => $email,
         ':password' => $password));
-				$query1 = "INSERT INTO profile (name,)
+				$query1 = "INSERT INTO profile (name)
 						  VALUES(:name)";
-				$stmt1 = $pdo->prepare($query);
+				$stmt1 = $pdo->prepare($query1);
 				$stmt1->execute(array(
 	        ':name' => $username,
 	      ));

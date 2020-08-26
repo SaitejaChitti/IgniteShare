@@ -1,11 +1,14 @@
 (function($) {
 	"use strict";
+	var today = new Date();
+
+	var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
 	var options = {
 		events_source: 'event.php',
 		view: 'month',
 		tmpl_path: 'tmpls/',
 		tmpl_cache: false,
-		day: '2018-02-28',
+		day: '2020-08-01',
 		onAfterEventsLoad: function(events) {
 			if(!events) {
 				return;
@@ -71,5 +74,5 @@
 		var val = $(this).is(':checked') ? true : false;
 		calendar.setOptions({weekbox: val});
 		calendar.view();
-	});	
+	});
 }(jQuery));
