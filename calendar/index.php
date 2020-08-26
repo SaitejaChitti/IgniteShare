@@ -5,7 +5,7 @@ include('header.php');
 <link rel="stylesheet" href="css/calendar.css">
 <?php include('container.php');?>
 <div class="container">
-	<h2>Event Calendar with jQuery, PHP and MySQL</h2>
+	<h2>Posts Calendar</h2>
 	<div class="page-header">
 		<div class="pull-right form-inline">
 			<div class="btn-group">

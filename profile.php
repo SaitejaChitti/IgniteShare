@@ -103,12 +103,25 @@
           <!-- Page Content  -->
         <div id="content" class="p-4 p-md-5">
 
-          <h2 class="mb-4">Sidebar #01</h2>
+          <h2 class="mb-4">Posts Calendar</h2>
+          <p>You can view all your posts in Calender View.</p>
           <form action="calendar/" method="post">
-          <input type="submit" class="btn btn-primary w-100" value="View Posts in Calendar"></input>
+          <input type="submit" class="btn btn-primary w-50" value="View Posts in Calendar"></input>
         </form>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <br><br>
+          <h2 class="mb-4">View your Posts</h2>
+          <p>You can View all your Posts.</p>
+          <form action="#" method="post">
+          <input type="submit" class="btn btn-primary w-50" value="View My Posts"></input>
+        </form>
+
+          <br><br>
+          <h2 class="mb-4">Trending Posts</h2>
+          <p>You can View all your Trending Posts.</p>
+          <form action="#" method="post">
+          <input type="submit" class="btn btn-primary w-50" value="View my Trending Posts"></input>
+        </form>
+
         </div>
   		</div>
 </div>
