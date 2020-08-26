@@ -100,8 +100,11 @@ function display(x)
                         echo('</form>');
                         }
                         else {
-                        echo('&emsp;<button type="submit" class="btn btn-primary" name="liked" value="liked" style="font-color:blue;"><i class="fa fa-check " style="font-size:18px">Liked</i>&nbsp;'.$l["likes"].'</button>');
-                        }
+												echo('<form action="unlike.php" method="post">');
+	                      echo('<input type="hidden" name="post_id" value="'.$row['post_id'].'"/>');
+                        echo('&emsp;<button type="submit" class="btn btn-primary" name="unlike" value="unlike" style="font-color:blue;"><i class="fa fa-thumbs-o-down fa-lg" >UnLike</i>&nbsp;'.$l["likes"].'</button>');
+                        echo('</form>');
+												}
 
                         ?>
                         &emsp;

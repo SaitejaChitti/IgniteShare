@@ -54,7 +54,6 @@
   	font-weight: 100;
   	font-family: 'Tangerine', cursive;
   }
-
   </style>
 <div class="container">
   <?php if(isset($_SESSION['name'])) {include 'includes/navbar1.php';
@@ -71,8 +70,9 @@
             <div class="img">
               <a href="profilepic.php">
                 <div class="img__overlay"><i class="fa fa-edit"  style="font-size:24px"></i></div></a>
+              <div class="img">
                 <?php echo '<img src="'.$pic.'"/>' ;?>
-
+              </div>
             </div>
               <br>
   	        <ul class="list-unstyled components mb-5">
@@ -104,6 +104,9 @@
         <div id="content" class="p-4 p-md-5">
 
           <h2 class="mb-4">Sidebar #01</h2>
+          <form action="calendar/" method="post">
+          <input type="submit" class="btn btn-primary w-100" value="View Posts in Calendar"></input>
+        </form>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
         </div>
@@ -116,10 +119,10 @@ else{
   echo ('<h2>Please Login Before Posting a Post ...<h2></div>');
 }
 ?>
-      <script src="js/jquery.min.js"></script>
-      <script src="js/popper.js"></script>
-      <script src="js/bootstrap.min.js"></script>
-      <script src="js/main.js"></script>
+      <script src="static/js/jquery.min.js"></script>
+      <script src="static/js/popper.js"></script>
+      <script src="static/js/bootstrap.min.js"></script>
+      <script src="static/js/main.js"></script>
       <!-- Footer -->
       	<?php include( ROOT_PATH . '/includes/footer.php'); ?>
       <!-- // Footer -->

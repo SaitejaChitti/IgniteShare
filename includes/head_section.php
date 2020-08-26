@@ -14,10 +14,5 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 	<script src="https://kit.fontawesome.com/f8ec40fafa.js" crossorigin="anonymous"></script>
 
-	<style>
-    .bs-example{
-        margin: 20px;
-    }
-	</style>
 
 	<meta charset="UTF-8">

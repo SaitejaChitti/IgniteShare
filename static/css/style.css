@@ -8290,7 +8290,7 @@ a[data-toggle="collapse"] {
 
   .img {
 
-  border-radius: 100%;
+  border-radius: 50%;
   display: flex;
   flex: 0 0 150px;
   height: 150px;
@@ -8319,5 +8319,5 @@ a[data-toggle="collapse"] {
 
 .img img {
   float:center;
-  height: 20%;
+  height: 100%;
 }
