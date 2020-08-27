@@ -99,9 +99,8 @@ echo "<h2>Please Login Before Posting a Post ...<h2>";
 </div>
 </div>
 </body>
+<?echo"HI";?>
 <!-- // container -->
 <!-- Footer -->
 	<?php include( ROOT_PATH . '/includes/footer.php'); ?>
 <!-- // Footer -->
-
-

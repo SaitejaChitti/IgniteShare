@@ -21,7 +21,7 @@ include('header.php');
 			</div>
 		</div>
 		<h3></h3>
-		<small>Check your Posts by clicking on the respective date.</small>
+		<small>Click on <b>Today</b> for checking todays Posts. Check your Posts by clicking on the respective <b>Date</b>.</small>
 	</div>
 	<div class="row">
 		<div class="col-md-9">

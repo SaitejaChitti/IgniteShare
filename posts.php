@@ -63,7 +63,7 @@ function display(x)
 			<option value="TP">All Trending Posts</option>
 			<option value="YTP">Your Trending Posts</option>
 		</select>
-		<input type="submit" class="btn btn-primary "  style="width:200px;"></input>
+		<input type="submit" class="btn btn-primary " name="filter" style="width:200px;"></input>
 	</p>		<br><br>
 		</form>
 
@@ -85,7 +85,7 @@ $stmt = $pdo->query("SELECT * FROM images natural join users  where name='{$_SES
 
 if($_GET['Filter']=='TP'){
 			$_SESSION['message']='Filter <b>Trending Posts</b> applied';
-$stmt = $pdo->query("SELECT * FROM images natural join users ORDER BY likes,name DESC");
+$stmt = $pdo->query("SELECT * FROM images natural join users ORDER BY likes DESC");
 }
 if($_GET['Filter']=='YTP'){
 			$_SESSION['message']='Filter <b>Your Trending Posts</b> applied';
