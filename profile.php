@@ -6,8 +6,8 @@
 
 <title>Sidebar 01</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -123,6 +123,18 @@
           <input type="submit" class="btn btn-primary w-50" value="View my Trending Posts"></input>
         </form>
 
+        <br><br>
+        <h2 class="mb-4">Edit Your Posts</h2>
+        <p>You can Edit any Posts of yours.</p>
+        <form action="editpost.php" method="post">
+        <input type="submit" class="btn btn-primary w-50" value="Edit my Post"></input>
+        </form>
+        <br><br>
+        <h2 class="mb-4">Delete Your Posts</h2>
+        <p>You can Delete any Posts of yours.</p>
+        <form action="deletepost.php" method="post">
+        <input type="submit" class="btn btn-primary w-50" value="Delete Post"></input>
+        </form>
         </div>
   		</div>
 </div>

@@ -12,7 +12,7 @@ if( $rows = $sqlEvents->fetchAll(PDO::FETCH_ASSOC) ) {
 	$calendar[] = array(
         'id' =>$row['post_id'],
         'title' => $row['message'],
-        'url' => "../posts.php",
+        'url' => "../posts.php?Filter=YTP",
 		"class" => 'event-important',
         'start' => "$start",
         'end' => "$end"

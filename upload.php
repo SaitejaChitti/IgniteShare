@@ -23,14 +23,16 @@ $fileType = pathinfo($targetFilePath,PATHINFO_EXTENSION);
 
 if(isset($_POST["submit"]) && isset($_POST['Theme'])&& !empty($_FILES["file"]["name"] )){
     // Allow certain file formats
-    $allowTypes = array('jpg','png','jpeg','gif','pdf','JPG','PNG','GIF','JPEG','PDF','mp4');
+    $allowTypes = array('jpg','png','jpeg','gif','JPG','PNG','GIF','JPEG');
     if(in_array($fileType, $allowTypes)){
         // Upload file to server
         if(move_uploaded_file($_FILES["file"]["tmp_name"], $targetFilePath)){
             // Insert image file name into database
 			$message=htmlentities($_POST['message']);
 			$theme=htmlentities($_POST['Theme']);
-      $insert = $pdo->query("INSERT into images (file_name,uploaded_on,message,theme,name) VALUES ('".$fileName."', NOW(),'".$message."','".$theme."','".$_SESSION['name']."')");
+			$toggle=0;
+			if(isset($_POST['toggle'])){$toggle=1;}
+      $insert = $pdo->query("INSERT into images(file_name,uploaded_on,message,theme,name,toggle) VALUES ('".$fileName."', NOW(),'".$message."','".$theme."','".$_SESSION['name']."','".$toggle."')");
       if($insert){
                 $_SESSION['message'] = "The file ".$fileName. " has been uploaded successfully.";
 				include "includes/messages.php";

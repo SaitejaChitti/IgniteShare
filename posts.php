@@ -59,11 +59,12 @@ function display(x)
 			<p align="right">
 		<select name="Filter" class="btn btn-primary " id="filter"  style="width:200px;">
 			<option value="RP">Recent Posts</option>
-			<option value="YP">Your Posts</option>
+			<option value="YPP">Your Public Posts</option>
+			<option value="YP">Your Private Posts</option>
 			<option value="TP">All Trending Posts</option>
 			<option value="YTP">Your Trending Posts</option>
 		</select>
-		<input type="submit" class="btn btn-primary " name="filter" style="width:200px;"></input>
+		<input type="submit" class="btn btn-primary" value='Filter' style="width:200px;"></input>
 	</p>		<br><br>
 		</form>
 
@@ -71,21 +72,25 @@ function display(x)
   if(isset($_SESSION['name'])){
   // Get images from the database
   $z=0;
-	$stmt = $pdo->query("SELECT * FROM images natural join users ORDER BY uploaded_on DESC");
+	$stmt = $pdo->query("SELECT * FROM images natural join users where toggle=0 ORDER BY uploaded_on DESC");
 	if(isset($_GET['Filter'])){
 
 		if($_GET['Filter']=='RP'){
 					$_SESSION['message']='Filter <b>Recent Posts</b> applied';
-  $stmt = $pdo->query("SELECT * FROM images natural join users ORDER BY uploaded_on DESC");
+  $stmt = $pdo->query("SELECT * FROM images natural join users where toggle=0 ORDER BY uploaded_on DESC");
 	}
-	if($_GET['Filter']=='YP'){
-				$_SESSION['message']='Filter <b>Your Posts</b> applied';
-$stmt = $pdo->query("SELECT * FROM images natural join users  where name='{$_SESSION['name']}' ORDER BY uploaded_on DESC");
+	if($_GET['Filter']=='YPP'){
+				$_SESSION['message']='Filter <b>Your Public Posts</b> applied';
+$stmt = $pdo->query("SELECT * FROM images natural join users  where name='{$_SESSION['name']}' and toggle=0 ORDER BY uploaded_on DESC");
 }
 
+if($_GET['Filter']=='YP'){
+			$_SESSION['message']='Filter <b>Your Private Posts</b> applied';
+$stmt = $pdo->query("SELECT * FROM images natural join users  where name='{$_SESSION['name']}' and toggle=1 ORDER BY uploaded_on DESC");
+}
 if($_GET['Filter']=='TP'){
 			$_SESSION['message']='Filter <b>Trending Posts</b> applied';
-$stmt = $pdo->query("SELECT * FROM images natural join users ORDER BY likes DESC");
+$stmt = $pdo->query("SELECT * FROM images natural join users where toggle=0 ORDER BY likes DESC");
 }
 if($_GET['Filter']=='YTP'){
 			$_SESSION['message']='Filter <b>Your Trending Posts</b> applied';

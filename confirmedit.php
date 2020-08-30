@@ -1,13 +1,13 @@
-<?php
-// Include the database configuration file
-include 'pdo.php';
+<?php  include('pdo.php'); ?>
+<!-- Source code for handling registration  -->
 
-include('includes/head_section.php'); ?>
+<?php include('includes/head_section.php');
+ ?>
 
-<title>MyBlog | Posts </title>
+<title>MyBlog | Sign up </title>
 </head>
 <body>
-	<style>
+  <style>
 	#theme{
 		-webkit-box-sizing: border-box;
 	  padding: 20; }
@@ -116,58 +116,78 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
+
 </style>
-<div class="container">
-	<!-- Navbar -->
-		<?php if(isset($_SESSION['name'])){include( ROOT_PATH . '/includes/navbar1.php');} ?>
-		<?php if(!isset($_SESSION['name'])){include( ROOT_PATH . '/includes/navbar.php');} ?>
-	<!-- // Navbar -->
+  <div class="container">
+  	<!-- Navbar -->
+  		<?php
+      if(isset($_SESSION['name'])){include( ROOT_PATH . '/includes/navbar1.php');
+      if(isset($_SESSION['errors'])){
+        echo "<br>";
+        include "includes/errors.php";
+        unset($_SESSION['errors']);
+        echo "<br>";
+      }
+      if(isset($_SESSION['message'])){
+        echo "<br>";
+        include "includes/messages.php" ;
+        unset($_SESSION['message']);
+        echo "<br>";
+      }
+      $sql="select * from users natural join images where name='".$_SESSION["name"]."' and post_id='".htmlentities($_GET['Theme'])."'";
+      $stmt=$pdo->query($sql);
+      $sql1="select * from themes";
+      $stmt1=$pdo->query($sql1);
+      $t = $stmt->fetch(PDO::FETCH_ASSOC);
+      $imageURL = 'uploads/'.$t["file_name"];
+      if($p = $stmt1->fetchAll(PDO::FETCH_ASSOC)){
+      ?>
+      <br>
+<center><h2>Edit Your Posts</h2></center><br>
+<form action="postedit.php" method="POST"><br>
+  <center><h2>Preview Post</h2>
+    <img src="<?php echo $imageURL;?>" alt="<?php echo $t["file_name"];?>" style="width:750px;height:400px"/>
+  </center><br>
+  <label for="email">Title for Post:</label>
+  <input type="text" name="message" value="<?php echo($t['message'])?>" placeholder="Message"/>
+  <br>
+  <label for="Theme">Choose a Theme to Edit:</label>&emsp;
+  <select name="Theme" class="theme-style" id="theme">
 
-	<div style="width: 40%; margin: 20px auto;">
+        <option value="<?php echo($t['theme']) ?>"><?php echo($t['theme']) ?></option>
+  	<?php 	 foreach($p as $l)
+  	{ ?>
 
-<?php
-if(isset($_SESSION['name']))
-{
-$statusMsg = '';
-$sql="select * from themes ";
-$stmt=$pdo->query($sql);
-if ( $t = $stmt->fetchAll(PDO::FETCH_ASSOC) )
-{
+    <option value="<?php echo($l['theme']) ?>"><?php echo($l['theme']) ?></option>
+  <?php } ?>
 
-?>
-
-<form action="upload.php" method="post" enctype="multipart/form-data"><br/>
-    <h2>Select Image File to Post:</h2>
-    <input type="file" name="file">
-	<input type="text" name="message" value="<?php $message?>" placeholder="Message">
-	<label for="Theme">Choose a Theme:</label>
-
-<select name="Theme" class="theme-style" id="theme">
-	<?php 	 foreach($t as $l)
-	{ ?>
-  <option value="<?php echo($l['theme']) ?>"><?php echo($l['theme']) ?></option>
-<?php } ?>
-
-</select>
+  </select>
+  <?php if($t['toggle']==0){?>
+  <br>
+  Public
+  <label class="switch">
+    <input type="checkbox" name="toggle"></input>
+    <span class="slider round"></span>
+  </label>
+  <span style="position:relative;left:45px;">Private</span>
+<?php }?>
+<?php if($t['toggle']==1){?>
 <br>
 Public
 <label class="switch">
-  <input type="checkbox" name="toggle"></input>
+  <input type="checkbox" name="toggle" checked></input>
   <span class="slider round"></span>
 </label>
 <span style="position:relative;left:45px;">Private</span>
-	<input type="submit" class="btn btn-primary w-100" name="submit" value="Post"></input>
-</form>
-<?php }}
-else{
-echo "<h2>Please Login Before Posting a Post ...<h2>";
-}
-?>
+<?php }?>
+  <br><br>
+    <?php echo('<input type="hidden" name="post_id" value="'.$t['post_id'].'"/>');?>
+  	<input type="submit" class="btn btn-primary w-50" name="submit" value="Edit"></input>
 
+<?php }}?>
 </div>
 </div>
 </body>
-<??>
 <!-- // container -->
 <!-- Footer -->
 	<?php include( ROOT_PATH . '/includes/footer.php'); ?>
