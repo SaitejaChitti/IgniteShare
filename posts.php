@@ -7,7 +7,9 @@ if(isset($_POST['like']))
 
 ?>
 <?php include('includes/head_section.php');
+
 ?>
+<script src="static/js/popper.js"></script>
 <title>MyBlog | Posts</title>
 </head>
 <body>
@@ -51,28 +53,59 @@ function display(x)
 		<?php if(isset($_SESSION['name'])){include( ROOT_PATH . '/includes/navbar1.php');} ?>
 		<?php if(!isset($_SESSION['name'])){include( ROOT_PATH . '/includes/navbar.php');} ?>
 		<br>
+		<?php
+		  $statement1 = $pdo->query("SELECT distinct(theme) FROM images natural join users where toggle=0 ");
+		?>
 
 		<center>
 		<h1> Posts </h1>
 		</center>
-		<form action="" method="get">
 			<p align="right">
-		<select name="Filter" class="btn btn-primary " id="filter"  style="width:200px;">
-			<option value="RP">Recent Posts</option>
-			<option value="YPP">Your Public Posts</option>
-			<option value="YP">Your Private Posts</option>
-			<option value="TP">All Trending Posts</option>
-			<option value="YTP">Your Trending Posts</option>
-		</select>
-		<input type="submit" class="btn btn-primary" value='Filter' style="width:200px;"></input>
-	</p>		<br><br>
-		</form>
+				<div class="dropdown" style="width:200px;">
+	 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+		 Filter
+	 </button>
+		<div class="dropdown-menu" style="width:200px;">
+			<a class="dropdown-item" href="posts.php?Filter=RP">Recent Posts</a>
+			<a class="dropdown-item" href="posts.php?Filter=YPP">Your Public Posts</a>
+			<a class="dropdown-item" href="posts.php?Filter=YP">Your Private Posts</a>
+			<a class="dropdown-item" href="posts.php?Filter=ATP">All Trending Posts</a>
+			<a class="dropdown-item" href="posts.php?Filter=YTP">Your Trending Posts</a>
+			<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+			Theme
+			</button>
+			<?php  				if ( $rows = $statement1->fetchAll(PDO::FETCH_ASSOC) )
+				{	?>
+			<div class="dropdown-menu" style="width:200px;">
+				<form class="px-4 py-3" method="get">
+					<label for="theme">Theme : </label>
+					<input id="theme" name="theme" type="text" list="themes" />
+					<datalist id="themes">
+						<?php	foreach($rows as $row)
+						    {
+						  ?>
+					              <option value="<?php echo($row['theme']) ?>"><?php echo($row['theme']) ?></option>
+<?php }?>
+					</datalist>
+				<?php } ?>
+				<input type="submit" class="btn btn-primary w-100" name="submit" ></input>
+</form>
 
+			</div>
+</div>
+	</p>		<br><br>
+</div>
   <?php
   if(isset($_SESSION['name'])){
   // Get images from the database
   $z=0;
 	$stmt = $pdo->query("SELECT * FROM images natural join users where toggle=0 ORDER BY uploaded_on DESC");
+if(isset($_GET['theme'])){
+				$_SESSION['message']='Filter <b>Theme Filter Appiled</b> applied';
+$stmt = $pdo->query("SELECT * FROM images natural join users where toggle=0 and theme='{$_GET['theme']}'");
+
+
+}
 	if(isset($_GET['Filter'])){
 
 		if($_GET['Filter']=='RP'){

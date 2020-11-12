@@ -82,9 +82,9 @@ form input:focus {
 
 /* LOGO */
 .navbar .logo_div {
-	float: left; 
+	float: right;
 	padding-top: 5px;
-	padding-left: 40px;
+	padding-left: 40%;
 }
 .navbar .logo_div h1 {
 	color: #B9E6F2;
@@ -135,7 +135,7 @@ form input:focus {
     font-family: 'Noto Serif', serif;
 }
 .banner .welcome_msg p span {
-	font-size: .81em; 
+	font-size: .81em;
 	color: #3E606F;
 }
 .banner .welcome_msg a {
@@ -249,7 +249,7 @@ form input:focus {
 }
 
 /* * * * * * * * *
-* SINGLE PAGE 
+* SINGLE PAGE
 * * * * * * * * */
 .content .post-wrapper {
 	width: 70%;
@@ -315,19 +315,19 @@ form input:focus {
 
 /* NOTIFICATION MESSAGES */
 .message {
-	width: 100%; 
-	margin: 0px auto; 
-	padding: 10px 0px; 
-	color: #3c763d; 
-	background: #dff0d8; 
+	width: 100%;
+	margin: 0px auto;
+	padding: 10px 0px;
+	color: #3c763d;
+	background: #dff0d8;
 	border: 1px solid #3c763d;
-	border-radius: 5px; 
+	border-radius: 5px;
 	text-align: center;
 }
 .error {
-	color: #a94442; 
-	background: #f2dede; 
-	border: 1px solid #a94442; 
+	color: #a94442;
+	background: #f2dede;
+	border: 1px solid #a94442;
 	margin-bottom: 20px;
 }
 .validation_errors p {
@@ -335,6 +335,6 @@ form input:focus {
 	margin-left: 10px;
 }
 .logged_in_info {
-	text-align: right; 
+	text-align: right;
 	padding: 10px;
 }
