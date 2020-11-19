@@ -84,6 +84,15 @@
   	              <a href="#" style="font-size:24px;"><?php echo ucfirst($t['name']) ?></a>
   	          </li>
               <span style="font-size:10pt;color:#808080;"><?php  if(isset($t['location'])){echo $t['location'];}?></span>
+              <div class="btn-group" role="group" aria-label="Basic example" style="padding-left:-200px;">
+                <form method="POST" action="followers.php">
+              <button type="submit" class="btn btn-outline-secondary btn-sm"><i class="fas fa-user-friends"></i>Followers</button>
+              </form>
+              <form method="POST" action="following.php">
+              <button type="submit" class="btn btn-outline-secondary btn-sm"><i class="fas fa-user-plus"></i>Following</button>
+              </form>
+              </div>
+
               <hr>
               <li>
   	              <a href="editprofile.php"><span style="float:left;font-size:18px;color:#333;font-family: sans-serif;"><b>About</b></span> <i class="fa fa-edit"  style="font-size:18px;float:right;"></i></a>

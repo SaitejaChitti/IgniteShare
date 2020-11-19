@@ -1,7 +1,7 @@
 <?php require_once "pdo.php" ?>
   <div class="navbar">
 	<div class="logo_div">
-		<a href="home.php"><h1>MyBlog</h1></a>
+		<a href="home.php"><h1>IgniteShare</h1></a>
 	</div>
 	<ul>
 

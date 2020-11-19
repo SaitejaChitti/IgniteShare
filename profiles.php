@@ -76,7 +76,7 @@
               <a href="javascript:void(0)">
                 <div class="img__overlay"><i class="fa fa-edit"  style="font-size:24px"></i></div></a>
               <div class="img">
-                <?php echo '<img src="'.$pic.'"/>' ;?>
+                 <img src="<?php echo($pic)?>" onerror="this.onerror=null;this.src='profile_pics/default.png';"/>
               </div>
             </div>
               <br>
@@ -97,8 +97,12 @@
               </form>
 
 <div class="btn-group" role="group" aria-label="Basic example" style="padding-left:-200px;">
-<button type="button" class="btn btn-outline-secondary btn-sm"><i class="fas fa-user-friends"></i>Followers</button>
-<button type="button" class="btn btn-outline-secondary btn-sm"><i class="fas fa-user-plus"></i>Following</button>
+  <form method="POST" action="followers1.php?name=<?php echo($_GET['name']);?>">
+<button type="submit" class="btn btn-outline-secondary btn-sm"><i class="fas fa-user-friends"></i>Followers</button>
+</form>
+<form method="POST" action="following1.php?name=<?php echo($_GET['name']);?>">
+<button type="submit" class="btn btn-outline-secondary btn-sm"><i class="fas fa-user-plus"></i>Following</button>
+</form>
 </div>
 <?php }
   else{
@@ -112,8 +116,13 @@
 </form>
 
 <div class="btn-group" role="group" aria-label="Basic example" style="padding-left:-200px;">
-<button type="button" class="btn btn-outline-secondary btn-sm"><i class="fas fa-user-friends"></i>Followers</button>
-<button type="button" class="btn btn-outline-secondary btn-sm"><i class="fas fa-user-plus"></i>Following</button>
+<form method="POST" action="followers1.php?name=<?php echo($_GET['name']);?>">
+<button type="submit" class="btn btn-outline-secondary btn-sm"><i class="fas fa-user-friends"></i>Followers</button>
+</form>
+<form method="POST" action="following1.php?name=<?php echo($_GET['name']);?>">
+<button type="submit" class="btn btn-outline-secondary btn-sm"><i class="fas fa-user-plus"></i>Following</button>
+</form>
+
 </div>
 <?php }
  else{?>
@@ -123,8 +132,12 @@
    </form>
 
 <div class="btn-group" role="group" aria-label="Basic example" style="padding-left:-200px;">
-<button type="button" class="btn btn-outline-secondary btn-sm"><i class="fas fa-user-friends"></i>Followers</button>
-<button type="button" class="btn btn-outline-secondary btn-sm"><i class="fas fa-user-plus"></i>Following</button>
+<form method="POST" action="followers1.php?name=<?php echo($_GET['name']);?>">
+<button type="submit" class="btn btn-outline-secondary btn-sm"><i class="fas fa-user-friends"></i>Followers</button>
+</form>
+<form method="POST" action="following1.php?name=<?php echo($_GET['name']);?>">
+<button type="submit" class="btn btn-outline-secondary btn-sm"><i class="fas fa-user-plus"></i>Following</button>
+</form>
 </div>
 <?php } }}?>
           <hr>

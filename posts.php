@@ -150,7 +150,7 @@ $stmt = $pdo->query("SELECT * FROM images natural join users where name='{$_SESS
             <div class="card-header" id="headingOne">
                 <h2 class="mb-0">
                     <button type="button" class="btn btn-link w-100" data-toggle="collapse" data-target="#collapse<?php echo ($z) ?>" style="text-align:left;">
-                    <div class="container2">  <img src="<?php echo $profile_picURL;?>" alt="Profile Pic"/>
+                    <div class="container2">  <img src="<?php echo $profile_picURL;?>" alt="Not found" onerror="this.onerror=null;this.src='profile_pics/default.png';"/>
               <span style="font-size:20pt;"><?php echo(ucfirst($row['name']))?></span></div><span style="font-size:10pt;color:#808080;"><?php echo($row['uploaded_on'])?></span>
               <center><span style="font-size:16pt;"><?php echo($row['message'])?></span></center><span style="font-size:10pt;color:#808080;float:right;">#<?php echo($row['theme'])?></span></button>
 
@@ -160,7 +160,7 @@ $stmt = $pdo->query("SELECT * FROM images natural join users where name='{$_SESS
                 <div class="card-body h-100">
                   <figure>
                     <center>
-                      <img src="<?php echo $imageURL;?>" alt="<?php echo $row["file_name"];?>" style="width:750px;height:400px"/>
+                      <img alt="<?php echo $row["file_name"];?>" src="<?php echo $imageURL;?>" style="width:750px;height:400px"/>
                     </center>
                   <figcaption>
                   <?php
